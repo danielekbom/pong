@@ -25,7 +25,10 @@ public class MyPongModel implements PongModel{
 	public void compute(Set<Input> inputs, long delta_t) {
 		for(Input input : inputs){
 			if(input.dir == Dir.DOWN){
-				setBarPos(input.key);
+				moveBarDown(input.key);
+			}
+			if(input.dir == Dir.UP){
+				moveBarUp(input.key);
 			}
 		}
 	}
@@ -38,9 +41,15 @@ public class MyPongModel implements PongModel{
 		return -1;
 	}
 	
-	public void setBarPos(BarKey k) {
+	public void moveBarDown(BarKey k) {
 		if(k == BarKey.LEFT){
 			LeftBarPos += 5;
+		}
+	}
+	
+	public void moveBarUp(BarKey k) {
+		if(k == BarKey.LEFT){
+			LeftBarPos -= 5;
 		}
 	}
 
