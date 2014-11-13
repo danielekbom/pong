@@ -4,10 +4,15 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.Set;
 
+import view.PongView;
+import model.Input.Dir;
+
 public class MyPongModel implements PongModel{
 
 	private String LeftPlayer;
 	private String RightPlayer;
+	private final Dimension FieldSize = new Dimension(200, 200);
+	private String Message;
 	
 	public MyPongModel(String LeftPlayer, String RightPlayer){
 		this.LeftPlayer = LeftPlayer;
@@ -16,43 +21,45 @@ public class MyPongModel implements PongModel{
 
 	@Override
 	public void compute(Set<Input> input, long delta_t) {
-		// TODO Auto-generated method stub
-		
+		for(Input inputt : input){
+			if(inputt.dir == Dir.DOWN){
+				setMessage(null);
+			}
+		}
 	}
 
 	@Override
 	public int getBarPos(BarKey k) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	public int getBarHeight(BarKey k) {
-		// TODO Auto-generated method stub
-		return 0;
+		return 50;
 	}
 
 	@Override
 	public Point getBallPos() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Point(100, 100);
 	}
 
 	@Override
 	public String getMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Hej";
+	}
+	
+	public void setMessage(String message) {
+		this.Message = message;
 	}
 
 	@Override
 	public String getScore(BarKey k) {
-		// TODO Auto-generated method stub
-		return null;
+		return "328942384";
 	}
 
 	@Override
 	public Dimension getFieldSize() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.FieldSize;
 	}
 }
