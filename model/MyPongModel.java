@@ -38,18 +38,22 @@ public class MyPongModel implements PongModel{
 		if(k == BarKey.LEFT){
 			return LeftBarPos;
 		}
-		return -1;
+		return RightBarPos;
 	}
 	
 	public void moveBarDown(BarKey k) {
 		if(k == BarKey.LEFT){
 			LeftBarPos += 5;
+		}else if(k == BarKey.RIGHT){
+			RightBarPos += 5;
 		}
 	}
 	
 	public void moveBarUp(BarKey k) {
 		if(k == BarKey.LEFT){
 			LeftBarPos -= 5;
+		}else if(k == BarKey.RIGHT){
+			RightBarPos -= 5;
 		}
 	}
 
