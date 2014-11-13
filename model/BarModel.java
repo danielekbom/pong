@@ -3,18 +3,18 @@ package model;
 public class BarModel {
 
 	private int Width = 50;
-	private int XPosition;
+	private int YPosition;
 	
-	public BarModel(int xPosition){
-		this.XPosition = xPosition;
+	public BarModel(int yPosition){
+		this.YPosition = yPosition;
 	}
 	
 	public void moveDown(){
-		XPosition += 5;
+		YPosition += 5;
 	}
 	
 	public void moveUp(){
-		XPosition -= 5;
+		YPosition -= 5;
 	}
 	
 	public void setWidth(int width){
@@ -25,12 +25,12 @@ public class BarModel {
 		return Width;
 	}
 	
-	public void setXPosition(int xPosition){
-		this.XPosition = xPosition;
+	public void setYPosition(int yPosition){
+		this.YPosition = yPosition;
 	}
 	
-	public int getXPosition(){
-		return XPosition;
+	public int getYPosition(){
+		return YPosition;
 	}
 	
 }
