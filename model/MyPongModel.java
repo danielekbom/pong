@@ -16,8 +16,6 @@ public class MyPongModel implements PongModel{
 	private BarModel LeftBar = new BarModel(50);
 	private BarModel RightBar = new BarModel(50);
 	private BallModel Ball = new BallModel();
-	private final int Delay = 200;
-	private int DelayCounter = 0;
 	
 	public MyPongModel(String LeftPlayer, String RightPlayer){
 		this.LeftPlayer = LeftPlayer;
@@ -26,30 +24,26 @@ public class MyPongModel implements PongModel{
 
 	@Override
 	public void compute(Set<Input> inputs, long delta_t) {
-		//if(DelayCounter > Delay){
-			for(Input input : inputs){
-				if(input.dir == Dir.DOWN && input.key == BarKey.LEFT) LeftBar.moveDown();
-				if(input.dir == Dir.UP && input.key == BarKey.LEFT) LeftBar.moveUp();
-				if(input.dir == Dir.DOWN && input.key == BarKey.RIGHT) RightBar.moveDown();
-				if(input.dir == Dir.UP && input.key == BarKey.RIGHT) RightBar.moveUp();
-			}
-			handleCollisions();
-			Ball.moveBall();
-			DelayCounter = 0;
-		//}
-		//DelayCounter += delta_t;
+		for(Input input : inputs){
+			if(input.dir == Dir.DOWN && input.key == BarKey.LEFT) LeftBar.moveDown(delta_t);
+			if(input.dir == Dir.UP && input.key == BarKey.LEFT) LeftBar.moveUp(delta_t);
+			if(input.dir == Dir.DOWN && input.key == BarKey.RIGHT) RightBar.moveDown(delta_t);
+			if(input.dir == Dir.UP && input.key == BarKey.RIGHT) RightBar.moveUp(delta_t);
+		}
+		handleCollisions();
+		Ball.moveBall(delta_t);
 	}
 	
 	public void handleCollisions(){
 		if(
-			(Ball.getBallPos().x == 5) &&
+			(Ball.getBallPos().x < 5) &&
 			(Ball.getBallPos().y > LeftBar.getYPosition() - LeftBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < LeftBar.getYPosition() + LeftBar.getWidth() / 2)){
 				Ball.setXSpeed(-1 * Ball.getXSpeed());
 				Ball.setYSpeed((Ball.getBallPos().y - LeftBar.getYPosition()));
 		}
 		if(
-			(Ball.getBallPos().x == FieldSize.width - 5) &&
+			(Ball.getBallPos().x > FieldSize.width - 5) &&
 			(Ball.getBallPos().y > RightBar.getYPosition() - RightBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < RightBar.getYPosition() + RightBar.getWidth() / 2)){
 				Ball.setXSpeed(-1 * Ball.getXSpeed());

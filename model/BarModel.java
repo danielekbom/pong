@@ -9,12 +9,12 @@ public class BarModel {
 		this.YPosition = yPosition;
 	}
 	
-	public void moveDown(){
-		YPosition += 2;
+	public void moveDown(long delta_t){
+		YPosition += 0.2 * delta_t;
 	}
 	
-	public void moveUp(){
-		YPosition -= 2;
+	public void moveUp(long delta_t){
+		YPosition -= 0.2 * delta_t;
 	}
 	
 	public void setWidth(int width){

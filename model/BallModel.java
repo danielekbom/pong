@@ -5,7 +5,7 @@ import java.awt.Point;
 public class BallModel {
 
 	private Point BallPos = new Point(100,100);
-	private int XSpeed = 1;
+	private double XSpeed = 0.1;
 	private double YSpeed = 0;
 	private double MoveYCounter = 0;
 	private final int MoveYInterval = 50;
@@ -18,24 +18,24 @@ public class BallModel {
 		return BallPos;
 	}
 	
-	public void moveBall(){
-		BallPos.x += XSpeed;
-		moveBallY();
+	public void moveBall(long delta_t){
+		BallPos.x += XSpeed * delta_t;
+		moveBallY(delta_t);
 	}
 	
-	private void moveBallY(){
+	private void moveBallY(long delta_t){
 		MoveYCounter += Math.abs(YSpeed);
 		if(MoveYCounter > MoveYInterval){
-			if(YSpeed < 0) { BallPos.y -= 1; } else { BallPos.y += 1; }
+			if(YSpeed < 0) { BallPos.y -= 0.1 * delta_t; } else { BallPos.y += 0.1 * delta_t; }
 			MoveYCounter = 0;
 		}
 	}
 	
-	public void setXSpeed(int speed){
+	public void setXSpeed(double speed){
 		XSpeed = speed;
 	}
 	
-	public int getXSpeed(){
+	public double getXSpeed(){
 		return XSpeed;
 	}
 	
