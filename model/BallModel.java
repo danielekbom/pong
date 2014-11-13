@@ -5,7 +5,6 @@ import java.awt.Point;
 public class BallModel {
 
 	private Point BallPos = new Point(100,100);
-	private Direction BallDir = Direction.LEFT;
 	private int XSpeed = 1;
 	private double YSpeed = 0;
 	private double MoveYCounter = 0;
@@ -20,16 +19,8 @@ public class BallModel {
 	}
 	
 	public void moveBall(){
-		moveBallX();
+		BallPos.x += XSpeed;
 		moveBallY();
-	}
-	
-	private void moveBallX(){
-		if(BallDir == Direction.LEFT){
-			BallPos.x -= XSpeed;
-		}else if(BallDir == Direction.RIGHT){
-			BallPos.x += XSpeed;
-		}
 	}
 	
 	private void moveBallY(){
@@ -40,16 +31,24 @@ public class BallModel {
 		}
 	}
 	
-	public void setDir(Direction dir){
-		BallDir = dir;
-	}
-	
 	public void setXSpeed(int speed){
 		XSpeed = speed;
 	}
 	
+	public int getXSpeed(){
+		return XSpeed;
+	}
+	
 	public void setYSpeed(double speed){
 		YSpeed = speed;
+	}
+	
+	public double getYSpeed(){
+		return YSpeed;
+	}
+	
+	public void setYPos(int y){
+		BallPos.y = y;
 	}
 	
 }

@@ -39,15 +39,23 @@ public class MyPongModel implements PongModel{
 			(Ball.getBallPos().x == 5) &&
 			(Ball.getBallPos().y > LeftBar.getYPosition() - LeftBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < LeftBar.getYPosition() + LeftBar.getWidth() / 2)){
-				Ball.setDir(Direction.RIGHT);
+				Ball.setXSpeed(-1 * Ball.getXSpeed());
 				Ball.setYSpeed((Ball.getBallPos().y - LeftBar.getYPosition()));
 		}
 		if(
 			(Ball.getBallPos().x == FieldSize.width - 5) &&
 			(Ball.getBallPos().y > RightBar.getYPosition() - RightBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < RightBar.getYPosition() + RightBar.getWidth() / 2)){
-				Ball.setDir(Direction.LEFT);
+				Ball.setXSpeed(-1 * Ball.getXSpeed());
 				Ball.setYSpeed((Ball.getBallPos().y - RightBar.getYPosition()));
+		}
+		if(Ball.getBallPos().y < 5){
+			Ball.setYPos(5);
+			Ball.setYSpeed(-1 * Ball.getYSpeed());
+		}
+		if(Ball.getBallPos().y > (FieldSize.height - 5)){
+			Ball.setYPos(FieldSize.height - 5);
+			Ball.setYSpeed(-1 * Ball.getYSpeed());
 		}
 	}
 
