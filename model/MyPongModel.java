@@ -13,6 +13,8 @@ public class MyPongModel implements PongModel{
 	private String RightPlayer;
 	private final Dimension FieldSize = new Dimension(200, 200);
 	private String Message;
+	private int LeftBarPos = 50;
+	private int RightBarPos = 50;
 	
 	public MyPongModel(String LeftPlayer, String RightPlayer){
 		this.LeftPlayer = LeftPlayer;
@@ -20,18 +22,26 @@ public class MyPongModel implements PongModel{
 	}
 
 	@Override
-	public void compute(Set<Input> input, long delta_t) {
-		for(Input inputt : input){
-			if(inputt.dir == Dir.DOWN){
-				setMessage(null);
+	public void compute(Set<Input> inputs, long delta_t) {
+		for(Input input : inputs){
+			if(input.dir == Dir.DOWN){
+				setBarPos(input.key);
 			}
 		}
 	}
 
 	@Override
 	public int getBarPos(BarKey k) {
-
-		return 0;
+		if(k == BarKey.LEFT){
+			return LeftBarPos;
+		}
+		return -1;
+	}
+	
+	public void setBarPos(BarKey k) {
+		if(k == BarKey.LEFT){
+			LeftBarPos += 5;
+		}
 	}
 
 	@Override
