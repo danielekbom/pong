@@ -10,11 +10,11 @@ public class BarModel {
 	}
 	
 	public void moveDown(){
-		YPosition += 5;
+		YPosition += 2;
 	}
 	
 	public void moveUp(){
-		YPosition -= 5;
+		YPosition -= 2;
 	}
 	
 	public void setWidth(int width){

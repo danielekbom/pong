@@ -40,12 +40,14 @@ public class MyPongModel implements PongModel{
 			(Ball.getBallPos().y > LeftBar.getYPosition() - LeftBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < LeftBar.getYPosition() + LeftBar.getWidth() / 2)){
 				Ball.setDir(Direction.RIGHT);
+				Ball.setYSpeed((Ball.getBallPos().y - LeftBar.getYPosition()));
 		}
 		if(
 			(Ball.getBallPos().x == FieldSize.width - 5) &&
 			(Ball.getBallPos().y > RightBar.getYPosition() - RightBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < RightBar.getYPosition() + RightBar.getWidth() / 2)){
 				Ball.setDir(Direction.LEFT);
+				Ball.setYSpeed((Ball.getBallPos().y - RightBar.getYPosition()));
 		}
 	}
 
