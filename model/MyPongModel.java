@@ -13,8 +13,8 @@ public class MyPongModel implements PongModel{
 	private String RightPlayer;
 	private final Dimension FieldSize = new Dimension(200, 200);
 	private String Message;
-	private int LeftBarPos = 50;
-	private int RightBarPos = 50;
+	private BarModel LeftBar = new BarModel(50);
+	private BarModel RightBar = new BarModel(50);
 	private BallModel Ball = new BallModel();
 	
 	public MyPongModel(String LeftPlayer, String RightPlayer){
@@ -25,40 +25,21 @@ public class MyPongModel implements PongModel{
 	@Override
 	public void compute(Set<Input> inputs, long delta_t) {
 		for(Input input : inputs){
-			if(input.dir == Dir.DOWN){
-				moveBarDown(input.key);
-			}
-			if(input.dir == Dir.UP){
-				moveBarUp(input.key);
-			}
+			if(input.dir == Dir.DOWN && input.key == BarKey.LEFT) LeftBar.moveDown();
+			if(input.dir == Dir.UP && input.key == BarKey.LEFT) LeftBar.moveUp();
+			if(input.dir == Dir.DOWN && input.key == BarKey.RIGHT) RightBar.moveDown();
+			if(input.dir == Dir.UP && input.key == BarKey.RIGHT) RightBar.moveUp();
 		}
 		
 		Ball.moveBall();
-		
 	}
 
 	@Override
 	public int getBarPos(BarKey k) {
 		if(k == BarKey.LEFT){
-			return LeftBarPos;
+			return LeftBar.getXPosition();
 		}
-		return RightBarPos;
-	}
-	
-	public void moveBarDown(BarKey k) {
-		if(k == BarKey.LEFT){
-			LeftBarPos += 5;
-		}else if(k == BarKey.RIGHT){
-			RightBarPos += 5;
-		}
-	}
-	
-	public void moveBarUp(BarKey k) {
-		if(k == BarKey.LEFT){
-			LeftBarPos -= 5;
-		}else if(k == BarKey.RIGHT){
-			RightBarPos -= 5;
-		}
+		return RightBar.getXPosition();
 	}
 
 	@Override
