@@ -9,7 +9,7 @@ import java.awt.Dimension;
  * The PongModel keeps track of the bars, the ball and the game state.
  */
 public interface PongModel {
-
+	
     /**
      * Takes the inputs and applies them to the model, computing one
      * simulation step. delta_t is the time that has passed since the
