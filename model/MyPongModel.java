@@ -15,6 +15,7 @@ public class MyPongModel implements PongModel{
 	private String Message;
 	private int LeftBarPos = 50;
 	private int RightBarPos = 50;
+	private BallModel Ball = new BallModel();
 	
 	public MyPongModel(String LeftPlayer, String RightPlayer){
 		this.LeftPlayer = LeftPlayer;
@@ -31,6 +32,9 @@ public class MyPongModel implements PongModel{
 				moveBarUp(input.key);
 			}
 		}
+		
+		Ball.moveBall();
+		
 	}
 
 	@Override
@@ -64,7 +68,7 @@ public class MyPongModel implements PongModel{
 
 	@Override
 	public Point getBallPos() {
-		return new Point(100, 100);
+		return Ball.getBallPos();
 	}
 
 	@Override
