@@ -9,17 +9,19 @@ import model.Input.Dir;
 
 public class MyPongModel implements PongModel{
 
-	private String LeftPlayer;
-	private String RightPlayer;
+	private PlayerModel LeftPlayer;
+	private PlayerModel RightPlayer;
 	private final Dimension FieldSize = new Dimension(500, 500);
 	private String Message;
-	private BarModel LeftBar = new BarModel(50);
-	private BarModel RightBar = new BarModel(50);
+	private BarModel LeftBar;
+	private BarModel RightBar;
 	private BallModel Ball = new BallModel();
 	
-	public MyPongModel(String LeftPlayer, String RightPlayer){
-		this.LeftPlayer = LeftPlayer;
-		this.RightPlayer = RightPlayer;
+	public MyPongModel(String leftPlayer, String rightPlayer){
+		LeftPlayer = new PlayerModel(leftPlayer);
+		RightPlayer = new PlayerModel(rightPlayer);
+		LeftBar = new BarModel(LeftPlayer, 50);
+		RightBar = new BarModel(RightPlayer, 50);
 	}
 
 	@Override
@@ -32,6 +34,8 @@ public class MyPongModel implements PongModel{
 		}
 		handleCollisions();
 		Ball.moveBall(delta_t);
+		if(Ball.getBallPos().x == 10 && Ball.getXSpeed() > 0) LeftBar.getPlayer().increaseScore();
+		if(Ball.getBallPos().x == FieldSize.width - 10 && Ball.getXSpeed() < 0) RightBar.getPlayer().increaseScore();
 	}
 	
 	public void handleCollisions(){
@@ -39,17 +43,13 @@ public class MyPongModel implements PongModel{
 			(Ball.getBallPos().x < 5) &&
 			(Ball.getBallPos().y > LeftBar.getYPosition() - LeftBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < LeftBar.getYPosition() + LeftBar.getWidth() / 2)){
-				//Ball.setXSpeed(-1 * Ball.getXSpeed());
-				//Ball.setYSpeed();
 				Ball.leftBarBounce((double)(Ball.getBallPos().y - LeftBar.getYPosition()) / (LeftBar.getWidth() / 2));
+				
 		}
 		if(
 			(Ball.getBallPos().x > FieldSize.width - 5) &&
 			(Ball.getBallPos().y > RightBar.getYPosition() - RightBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < RightBar.getYPosition() + RightBar.getWidth() / 2)){
-				//Ball.setXSpeed(-1 * Ball.getXSpeed());
-				//Ball.setYSpeed();
-				//System.out.println(Ball.getBallPos().y + " " + RightBar.getYPosition() + " " + RightBar.getWidth());
 				Ball.rightBarBounce((double)(Ball.getBallPos().y - RightBar.getYPosition()) / (RightBar.getWidth() / 2));
 		}
 		if(Ball.getBallPos().y < 5){
@@ -94,7 +94,10 @@ public class MyPongModel implements PongModel{
 
 	@Override
 	public String getScore(BarKey k) {
-		return "328942384";
+		if(k == BarKey.LEFT){
+			return String.valueOf(LeftBar.getPlayer().getScore());
+		}
+		return String.valueOf(RightBar.getPlayer().getScore());
 	}
 
 	@Override

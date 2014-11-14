@@ -4,8 +4,10 @@ public class BarModel {
 
 	private int Width = 200;
 	private int YPosition;
+	private PlayerModel Player;
 	
-	public BarModel(int yPosition){
+	public BarModel(PlayerModel player, int yPosition){
+		this.Player = player;
 		this.YPosition = yPosition;
 	}
 	
@@ -31,6 +33,10 @@ public class BarModel {
 	
 	public int getYPosition(){
 		return YPosition;
+	}
+	
+	public PlayerModel getPlayer(){
+		return Player;
 	}
 	
 }
