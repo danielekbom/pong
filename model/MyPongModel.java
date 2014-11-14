@@ -11,7 +11,7 @@ public class MyPongModel implements PongModel{
 
 	private String LeftPlayer;
 	private String RightPlayer;
-	private final Dimension FieldSize = new Dimension(200, 200);
+	private final Dimension FieldSize = new Dimension(500, 500);
 	private String Message;
 	private BarModel LeftBar = new BarModel(50);
 	private BarModel RightBar = new BarModel(50);
@@ -40,14 +40,14 @@ public class MyPongModel implements PongModel{
 			(Ball.getBallPos().y > LeftBar.getYPosition() - LeftBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < LeftBar.getYPosition() + LeftBar.getWidth() / 2)){
 				Ball.setXSpeed(-1 * Ball.getXSpeed());
-				Ball.setYSpeed((Ball.getBallPos().y - LeftBar.getYPosition()));
+				Ball.setYSpeed((Ball.getBallPos().y - LeftBar.getYPosition()) / 10);
 		}
 		if(
 			(Ball.getBallPos().x > FieldSize.width - 5) &&
 			(Ball.getBallPos().y > RightBar.getYPosition() - RightBar.getWidth() / 2) && 
 			(Ball.getBallPos().y < RightBar.getYPosition() + RightBar.getWidth() / 2)){
 				Ball.setXSpeed(-1 * Ball.getXSpeed());
-				Ball.setYSpeed((Ball.getBallPos().y - RightBar.getYPosition()));
+				Ball.setYSpeed((Ball.getBallPos().y - RightBar.getYPosition()) / 10);
 		}
 		if(Ball.getBallPos().y < 5){
 			Ball.setYPos(5);

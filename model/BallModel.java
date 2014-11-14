@@ -7,8 +7,6 @@ public class BallModel {
 	private Point BallPos = new Point(100,100);
 	private double XSpeed = 0.1;
 	private double YSpeed = 0;
-	private double MoveYCounter = 0;
-	private final int MoveYInterval = 50;
 	
 	public BallModel(){
 		
@@ -24,11 +22,7 @@ public class BallModel {
 	}
 	
 	private void moveBallY(long delta_t){
-		MoveYCounter += Math.abs(YSpeed);
-		if(MoveYCounter > MoveYInterval){
-			if(YSpeed < 0) { BallPos.y -= 0.1 * delta_t; } else { BallPos.y += 0.1 * delta_t; }
-			MoveYCounter = 0;
-		}
+		if(YSpeed < 0) { BallPos.y -= 0.1 * delta_t; } else if(YSpeed > 0) { BallPos.y += 0.1 * delta_t; }
 	}
 	
 	public void setXSpeed(double speed){

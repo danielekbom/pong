@@ -2,7 +2,7 @@ package model;
 
 public class BarModel {
 
-	private int Width = 50;
+	private int Width = 200;
 	private int YPosition;
 	
 	public BarModel(int yPosition){
