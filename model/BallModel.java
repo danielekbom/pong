@@ -16,19 +16,17 @@ public class BallModel {
 	}
 	
 	public void leftBarBounce(double distance) {
-		/*if(distance > 0.5){
-			Angle = Math.toRadians(100);
-			dX = -1*(Math.cos(Angle) * Speed);
-		}else*/ if(distance > 0.1){
-			Angle = Math.toRadians(20);
-			dX = (Math.cos(Angle) * Speed);
-		}else if(distance < -0.1){
-			Angle = Math.toRadians(340);
-			dX = (Math.cos(Angle) * Speed);
-		}else{
-			Angle = 0;
-			dX = (Math.cos(Angle) * Speed);
-		}
+		System.out.println(distance);
+		if(distance > 0.8) Angle = Math.toRadians(80);
+		else if(distance > 0.6) Angle = Math.toRadians(60);
+		else if(distance > 0.4) Angle = Math.toRadians(40);
+		else if(distance > 0.2) Angle = Math.toRadians(20);
+		else if(distance < -0.8) Angle = Math.toRadians(280);
+		else if(distance < -0.6) Angle = Math.toRadians(300);
+		else if(distance < -0.4) Angle = Math.toRadians(320);
+		else if(distance < -0.2) Angle = Math.toRadians(340);
+		else Angle = 0;
+		dX = Math.cos(Angle) * Speed;
 		dY = Math.sin(Angle) * Speed;
 	}
 
