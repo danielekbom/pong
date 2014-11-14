@@ -5,11 +5,9 @@ import java.awt.Point;
 public class BallModel {
 
 	private Point BallPos = new Point(100,100);
-	private double XSpeed = 0.15;
-	private double YSpeed = 0;
 	
 	private double Speed = 0.2;
-	private double dX = 0.2;
+	private double dX = Speed;
 	private double dY = 0.0;
 	private double Angle = 0;
 	
