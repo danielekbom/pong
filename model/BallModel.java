@@ -8,45 +8,42 @@ public class BallModel {
 	private double XSpeed = 0.15;
 	private double YSpeed = 0;
 	
-	private double Speed = 0.20;
-	private double dX = 0.15;
-	private double dY = 0.00;
-	private double Angle = 0;//Math.atan(Math.toRadians(dY) / Math.toRadians(dX));
+	private double Speed = 0.2;
+	private double dX = 0.2;
+	private double dY = 0.0;
+	private double Angle = 0;
 	
 	public BallModel(){
 		System.out.println(Angle);
 	}
 	
 	public void leftBarBounce(double distance) {
-		//Angle -= Math.PI;
-		//Angle = Math.PI*2 - Angle; // 98
-		//dY = Math.sin(Angle) * Speed;
-		
 		if(distance > 0.1){
-			Angle = Math.toRadians(160);
+			Angle = Math.toRadians(140);
+			dX = -1*(Math.cos(Angle) * Speed);
 		}else if(distance < -0.1){
 			Angle = Math.toRadians(220);
+			dX = -1*(Math.cos(Angle) * Speed);
 		}else{
 			Angle = 0;
+			dX = (Math.cos(Angle) * Speed);
 		}
 		dY = Math.sin(Angle) * Speed;
-		dX = (Math.cos(Angle) * Speed);
 	}
 
 	public void rightBarBounce(double distance) {
-		//Angle += Math.PI;
-		//Angle = Angle%(Math.PI*2);
-		//Angle = Math.PI*2 - Angle; // 98
 		System.out.println(distance);
 		if(distance > 0.1){
 			Angle = Math.toRadians(140);
+			dX = (Math.cos(Angle) * Speed);
 		}else if(distance < -0.1){
 			Angle = Math.toRadians(220);
+			dX = (Math.cos(Angle) * Speed);
 		}else{
 			Angle = 0;
+			dX = -1*(Math.cos(Angle) * Speed);
 		}
 		dY = Math.sin(Angle) * Speed;
-		dX = (Math.cos(Angle) * Speed);
 	}
 	
 	public Point getBallPos(){
