@@ -1,12 +1,15 @@
 package model;
 
+import java.awt.Dimension;
 import java.awt.Point;
+import java.util.Random;
 
 public class BallModel {
 
-	private Point BallPos = new Point(100,100);
+	private Point BallPos = new Point(250,250);
 	
-	private double Speed = 0.2;
+	private final double StartSpeed = 0.2;
+	private double Speed = StartSpeed;
 	private double dX = Speed;
 	private double dY = 0.0;
 	private double Angle = 0;
@@ -27,9 +30,10 @@ public class BallModel {
 		else Angle = 0;
 		dX = Math.cos(Angle) * Speed;
 		dY = Math.sin(Angle) * Speed;
+		BallPos.x = 5;
 	}
 
-	public void rightBarBounce(double distance) {
+	public void rightBarBounce(double distance, Dimension fieldSize) {
 		if(distance > 0.8) Angle = Math.toRadians(100);
 		else if(distance > 0.6) Angle = Math.toRadians(120);
 		else if(distance > 0.4) Angle = Math.toRadians(140);
@@ -44,6 +48,7 @@ public class BallModel {
 		else dX = (Math.cos(Angle) * Speed);
 		
 		dY = Math.sin(Angle) * Speed;
+		BallPos.x = fieldSize.width - 5;
 	}
 	
 	public Point getBallPos(){
@@ -51,12 +56,10 @@ public class BallModel {
 	}
 	
 	public void moveBall(long delta_t){
-		BallPos.x += dX * delta_t;
-		moveBallY(delta_t);
-	}
-	
-	private void moveBallY(long delta_t){
-		BallPos.y += dY * delta_t;
+		if(delta_t  < 1000){
+			BallPos.x += dX * delta_t;
+			BallPos.y += dY * delta_t;
+		}
 	}
 	
 	public void setXSpeed(double speed){
@@ -77,6 +80,28 @@ public class BallModel {
 	
 	public void setYPos(int y){
 		BallPos.y = y;
+	}
+	
+	public void setXPos(int x){
+		BallPos.x = x;
+	}
+
+	public void resetBall(Dimension fieldSize) {
+		BallPos.x = fieldSize.width / 2;
+		BallPos.y = fieldSize.height / 2;
+		Speed = StartSpeed;
+		Angle = 0;
+		Boolean rand = new Random().nextBoolean();
+		if(rand) dX = Speed; else dX = -1 * Speed;
+		dY = 0;
+	}
+	
+	public void increaseSpeed(double increaseWith) {
+		Speed += increaseWith;
+	}
+	
+	public double getSpeed(){
+		return Speed;
 	}
 	
 }

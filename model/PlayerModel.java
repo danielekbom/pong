@@ -18,7 +18,11 @@ public class PlayerModel {
 	}
 	
 	public void increaseScore(){
-		Score++;
+		Score++;	
+	}
+	
+	public void resetScore(){
+		Score = 0;
 	}
 	
 }
