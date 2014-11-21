@@ -26,8 +26,12 @@ public class BarModel {
 		}
 	}
 	
-	public void setWidth(int width){
-		this.Width = width;
+	public boolean setWidth(int width){
+		if (width >0) {
+			this.Width = width;
+			return true;
+		}
+		return false;
 	}
 	
 	public int getWidth(){
@@ -47,7 +51,11 @@ public class BarModel {
 	}
 
 	public void decreaseWidth(int decreaseWith) {
-		Width -= decreaseWith;
+		if (this.Width > 50 + decreaseWith) {
+			Width -= decreaseWith;
+		} else {
+			Width = 50;
+		}
 	}
 
 	public void resetBar() {
