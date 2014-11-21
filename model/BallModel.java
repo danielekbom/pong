@@ -6,13 +6,15 @@ import java.util.Random;
 
 /**
  * This class represents a ball in the game.
+ * A ball consists of a BallPosition, a StartSpeed, dX, dY and an Angle.
+ * dX is the horizontal speed, dY the vertical speed, and their value depends on Angle.
+ * The sum of dX and dY is equal to Speed.
  * @author Daniel and Oscar
  *
  */
 public class BallModel {
 
 	private Point BallPos = new Point(250,250);
-	
 	private final double StartSpeed = 0.2;
 	private double Speed = StartSpeed;
 	private double dX = Speed;
@@ -27,7 +29,9 @@ public class BallModel {
 	}
 	
 	/**
-	 * 
+	 * Method to run when the ball hits the left Bar.
+	 * The Angle, dX and dY are changed depending on the value of "distance" to make the ball
+	 * bounce of the bar and go in another direction.
 	 * @param distance The distance in percent from the Bar's center where the ball bounced.
 	 */
 	public void leftBarBounce(double distance) {
