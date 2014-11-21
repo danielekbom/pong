@@ -49,6 +49,13 @@ public class BallModel {
 		BallPos.x = 5;
 	}
 
+	/**
+	 * Method to run when the ball hits the right Bar.
+	 * The Angle, dX and dY are changed depending on the value of "distance" to make the ball
+	 * bounce of the bar and go in another direction.
+	 * @param distance The distance in percent from the Bar's center where the ball bounced.
+	 * @param fieldSize The size of the game field.
+	 */
 	public void rightBarBounce(double distance, Dimension fieldSize) {
 		if(distance > 0.8) Angle = Math.toRadians(100);
 		else if(distance > 0.6) Angle = Math.toRadians(120);
@@ -67,10 +74,18 @@ public class BallModel {
 		BallPos.x = fieldSize.width - 5;
 	}
 	
+	/**
+	 * Getter for the ball's position.
+	 * @return The ball's position.
+	 */
 	public Point getBallPos(){
 		return BallPos;
 	}
 	
+	/**
+	 * Moves the ball's position by adding dX to the ball's x position and dY to the ball's y position.
+	 * @param delta_t The time since the previous time the game's compute method was called.
+	 */
 	public void moveBall(long delta_t){
 		if(delta_t  < 1000){
 			BallPos.x += dX * delta_t;
@@ -78,30 +93,59 @@ public class BallModel {
 		}
 	}
 	
+	/**
+	 * Setter for the ball's dX(horizontal) speed.
+	 * @param speed The speed to set dX to.
+	 */
 	public void setXSpeed(double speed){
 		dX = speed;
 	}
 	
+	/**
+	 * Getter for the ball's dX(horizontal) speed.
+	 * @return The ball's dX.
+	 */
 	public double getXSpeed(){
 		return dX;
 	}
 	
+	/**
+	 * Setter for the ball's dY(vertical) speed.
+	 * @param speed The speed to set dY to.
+	 */
 	public void setYSpeed(double speed){
 		dY = speed;
 	}
 	
+	/**
+	 * Getter for the ball's dY(vertical) speed.
+	 * @return The ball's dY.
+	 */
 	public double getYSpeed(){
 		return dY;
 	}
 	
+	/**
+	 * Setter for the ball's y position.
+	 * @param y The y position to update to.
+	 */
 	public void setYPos(int y){
 		BallPos.y = y;
 	}
 	
+	/**
+	 * Setter for the ball's x position.
+	 * @param x The x position to update to.
+	 */
 	public void setXPos(int x){
 		BallPos.x = x;
 	}
 
+	/**
+	 * Resets the ball to the starting position and speed.
+	 * The ball will start by moving randomly to the left or to the right.
+	 * @param fieldSize The size of the game field.
+	 */
 	public void resetBall(Dimension fieldSize) {
 		BallPos.x = fieldSize.width / 2;
 		BallPos.y = fieldSize.height / 2;
@@ -112,10 +156,18 @@ public class BallModel {
 		dY = 0;
 	}
 	
+	/**
+	 * Increases the ball's speed by increaseWith.
+	 * @param increaseWith Value to increase the speed with.
+	 */
 	public void increaseSpeed(double increaseWith) {
 		Speed += increaseWith;
 	}
 	
+	/**
+	 * Getter for the ball's speed.
+	 * @return	The ball's speed.
+	 */
 	public double getSpeed(){
 		return Speed;
 	}
