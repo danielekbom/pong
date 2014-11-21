@@ -4,6 +4,11 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.Random;
 
+/**
+ * This class represents a ball in the game.
+ * @author Daniel and Oscar
+ *
+ */
 public class BallModel {
 
 	private Point BallPos = new Point(250,250);
@@ -14,10 +19,17 @@ public class BallModel {
 	private double dY = 0.0;
 	private double Angle = 0;
 	
+	/**
+	 * Standard constructor of a ball.
+	 */
 	public BallModel(){
 
 	}
 	
+	/**
+	 * 
+	 * @param distance The distance in percent from the Bar's center where the ball bounced.
+	 */
 	public void leftBarBounce(double distance) {
 		if(distance > 0.8) Angle = Math.toRadians(80);
 		else if(distance > 0.6) Angle = Math.toRadians(60);
