@@ -4,10 +4,6 @@ import java.util.Set;
 import java.awt.Point;
 import java.awt.Dimension;
 
-
-/**
- * The PongModel keeps track of the bars, the ball and the game state.
- */
 public interface PongModel {
 	
     /**
