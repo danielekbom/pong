@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.awt.Dimension;
+
 import model.BarModel;
 import model.PlayerModel;
 
@@ -16,6 +18,8 @@ public class TestBar {
 	
 	private BarModel testBar1 = new BarModel(testPlayer1);
 	private BarModel testBar2 = new BarModel(testPlayer2);
+	
+	private final Dimension FieldSize = new Dimension(500, 500);
 
 	@Test
 	public void testBarWidth() {
@@ -49,5 +53,44 @@ public class TestBar {
 		assertEquals(testBar1.getYPosition(), 250);
 		testBar1.setYPosition(200);
 		assertEquals(testBar1.getYPosition(), 200);
+		testBar1.setYPosition(0);
+		assertEquals(testBar1.getYPosition(), 0);
+		testBar1.setYPosition(-200);
+		assertEquals(testBar1.getYPosition(), 0);
+	}
+	
+	@Test
+	public void testBarReset() {
+		testBar1.resetBar();
+		assertEquals(startingWidth, testBar1.getWidth());
+		assertEquals(StartingY, testBar1.getYPosition());
+	}
+	
+	@Test
+	public void testBarMoveUp () {
+		testBar2.resetBar();
+		assertEquals(testBar2.getYPosition(), StartingY);
+		testBar2.moveUp(10);
+		assertEquals(testBar2.getYPosition(), StartingY - 2);
+		testBar2.moveUp(100);
+		assertEquals(testBar2.getYPosition(), StartingY - 2 -20);
+		testBar2.moveUp(-100);
+		assertEquals(testBar2.getYPosition(), StartingY - 2 -20);
+		testBar2.moveUp(0);
+		assertEquals(testBar2.getYPosition(), StartingY - 2 -20);
+	}
+	
+	@Test
+	public void testBarMoveDown () {
+		testBar1.resetBar();
+		assertEquals(testBar1.getYPosition(), StartingY);
+		testBar2.moveDown(10, FieldSize);
+		assertEquals(testBar2.getYPosition(), StartingY + 2);
+		testBar2.moveDown(100, FieldSize);
+		assertEquals(testBar2.getYPosition(), StartingY + 2 + 20);
+		testBar2.moveDown(0, FieldSize);
+		assertEquals(testBar2.getYPosition(), StartingY + 2 + 20);
+		testBar2.moveDown(-100, FieldSize);
+		assertEquals(testBar2.getYPosition(), StartingY + 2 + 20);
 	}
 }

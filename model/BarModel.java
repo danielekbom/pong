@@ -33,7 +33,7 @@ public class BarModel {
 	 * @param FieldSize The size of the game field.
 	 */
 	public void moveDown(long delta_t, Dimension FieldSize){
-		if(YPosition < FieldSize.height){
+		if(YPosition < FieldSize.height && delta_t > 0 && FieldSize != null){
 			YPosition += 0.2 * delta_t;
 		}
 	}
@@ -44,7 +44,7 @@ public class BarModel {
 	 * @param delta_t The time since the previous time the game's compute method was called.
 	 */
 	public void moveUp(long delta_t){
-		if(YPosition > 0){
+		if(YPosition > 0 && delta_t > 0){
 			YPosition -= 0.2 * delta_t;
 		}
 	}
@@ -56,6 +56,7 @@ public class BarModel {
 	 * @return True if the width was successfully updated.
 	 */
 	public boolean setWidth(int width){
+		
 		if (width > 0) {
 			this.Width = width;
 			return true;
@@ -76,7 +77,9 @@ public class BarModel {
 	 * @param yPosition The new y position to update to.
 	 */
 	public void setYPosition(int yPosition){
-		this.YPosition = yPosition;
+		if( yPosition >= 0) {
+			this.YPosition = yPosition;
+		}
 	}
 	
 	/**
